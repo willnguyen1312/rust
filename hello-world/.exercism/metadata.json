@@ -1,1 +1,9 @@
-{"track":"rust","exercise":"hello-world","id":"b9e38c2a39a947c4ae8409a54c59bb81","url":"https://exercism.org/tracks/rust/exercises/hello-world","handle":"willnguyen1312","is_requester":true,"auto_approve":false}
+{
+  "track": "rust",
+  "exercise": "hello-world",
+  "id": "b9e38c2a39a947c4ae8409a54c59bb81",
+  "url": "https://exercism.org/tracks/rust/exercises/hello-world",
+  "handle": "willnguyen1312",
+  "is_requester": true,
+  "auto_approve": false
+}

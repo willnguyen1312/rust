@@ -1,7 +1,5 @@
 {
-  "authors": [
-    "EduardoBautista"
-  ],
+  "authors": ["EduardoBautista"],
   "contributors": [
     "ashleygwilliams",
     "ClashTheBunny",
@@ -25,16 +23,9 @@
     "ZapAnton"
   ],
   "files": {
-    "solution": [
-      "src/lib.rs",
-      "Cargo.toml"
-    ],
-    "test": [
-      "tests/hello-world.rs"
-    ],
-    "example": [
-      ".meta/example.rs"
-    ]
+    "solution": ["src/lib.rs", "Cargo.toml"],
+    "test": ["tests/hello-world.rs"],
+    "example": [".meta/example.rs"]
   },
   "blurb": "Exercism's classic introductory exercise. Just say \"Hello, World!\".",
   "source": "This is an exercise to introduce users to using Exercism",

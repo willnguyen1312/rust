@@ -1,7 +1,5 @@
 {
-  "authors": [
-    "IanWhitney"
-  ],
+  "authors": ["IanWhitney"],
   "contributors": [
     "andy5995",
     "ashleygwilliams",
@@ -28,16 +26,9 @@
     "ZapAnton"
   ],
   "files": {
-    "solution": [
-      "src/lib.rs",
-      "Cargo.toml"
-    ],
-    "test": [
-      "tests/gigasecond.rs"
-    ],
-    "example": [
-      ".meta/example.rs"
-    ]
+    "solution": ["src/lib.rs", "Cargo.toml"],
+    "test": ["tests/gigasecond.rs"],
+    "example": [".meta/example.rs"]
   },
   "blurb": "Given a moment, determine the moment that would be after a gigasecond has passed.",
   "source": "Chapter 9 in Chris Pine's online Learn to Program tutorial.",
