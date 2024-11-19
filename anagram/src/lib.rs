@@ -1,5 +1,4 @@
 use std::collections::HashSet;
-
 pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&'a str]) -> HashSet<&'a str> {
     let word_lower = word.to_lowercase();
     let word_sorted = get_sorted(&word_lower);
@@ -14,7 +13,6 @@ pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&'a str]) -> HashSet<&'
         .copied()
         .collect()
 }
-
 fn get_sorted(word: &str) -> Vec<char> {
     let mut word_sorted: Vec<char> = word.chars().collect();
     word_sorted.sort_unstable();

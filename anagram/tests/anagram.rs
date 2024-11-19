@@ -1,6 +1,5 @@
 use anagram::*;
 use std::collections::HashSet;
-
 #[test]
 fn no_matches() {
     let word = "diaper";
@@ -9,9 +8,7 @@ fn no_matches() {
     let expected = HashSet::from_iter([]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn detects_two_anagrams() {
     let word = "solemn";
     let inputs = &["lemons", "cherry", "melons"];
@@ -19,9 +16,7 @@ fn detects_two_anagrams() {
     let expected = HashSet::from_iter(["lemons", "melons"]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn does_not_detect_anagram_subsets() {
     let word = "good";
     let inputs = &["dog", "goody"];
@@ -29,9 +24,7 @@ fn does_not_detect_anagram_subsets() {
     let expected = HashSet::from_iter([]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn detects_anagram() {
     let word = "listen";
     let inputs = &["enlists", "google", "inlets", "banana"];
@@ -39,9 +32,7 @@ fn detects_anagram() {
     let expected = HashSet::from_iter(["inlets"]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn detects_three_anagrams() {
     let word = "allergy";
     let inputs = &[
@@ -56,9 +47,7 @@ fn detects_three_anagrams() {
     let expected = HashSet::from_iter(["gallery", "regally", "largely"]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn detects_multiple_anagrams_with_different_case() {
     let word = "nose";
     let inputs = &["Eons", "ONES"];
@@ -66,9 +55,7 @@ fn detects_multiple_anagrams_with_different_case() {
     let expected = HashSet::from_iter(["Eons", "ONES"]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn does_not_detect_non_anagrams_with_identical_checksum() {
     let word = "mass";
     let inputs = &["last"];
@@ -76,9 +63,7 @@ fn does_not_detect_non_anagrams_with_identical_checksum() {
     let expected = HashSet::from_iter([]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn detects_anagrams_case_insensitively() {
     let word = "Orchestra";
     let inputs = &["cashregister", "Carthorse", "radishes"];
@@ -86,9 +71,7 @@ fn detects_anagrams_case_insensitively() {
     let expected = HashSet::from_iter(["Carthorse"]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn detects_anagrams_using_case_insensitive_subject() {
     let word = "Orchestra";
     let inputs = &["cashregister", "carthorse", "radishes"];
@@ -96,9 +79,7 @@ fn detects_anagrams_using_case_insensitive_subject() {
     let expected = HashSet::from_iter(["carthorse"]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn detects_anagrams_using_case_insensitive_possible_matches() {
     let word = "orchestra";
     let inputs = &["cashregister", "Carthorse", "radishes"];
@@ -106,9 +87,7 @@ fn detects_anagrams_using_case_insensitive_possible_matches() {
     let expected = HashSet::from_iter(["Carthorse"]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn does_not_detect_an_anagram_if_the_original_word_is_repeated() {
     let word = "go";
     let inputs = &["goGoGO"];
@@ -116,9 +95,7 @@ fn does_not_detect_an_anagram_if_the_original_word_is_repeated() {
     let expected = HashSet::from_iter([]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn anagrams_must_use_all_letters_exactly_once() {
     let word = "tapper";
     let inputs = &["patter"];
@@ -126,9 +103,7 @@ fn anagrams_must_use_all_letters_exactly_once() {
     let expected = HashSet::from_iter([]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn words_are_not_anagrams_of_themselves() {
     let word = "BANANA";
     let inputs = &["BANANA"];
@@ -136,9 +111,7 @@ fn words_are_not_anagrams_of_themselves() {
     let expected = HashSet::from_iter([]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn words_are_not_anagrams_of_themselves_even_if_letter_case_is_partially_different() {
     let word = "BANANA";
     let inputs = &["Banana"];
@@ -146,9 +119,7 @@ fn words_are_not_anagrams_of_themselves_even_if_letter_case_is_partially_differe
     let expected = HashSet::from_iter([]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn words_are_not_anagrams_of_themselves_even_if_letter_case_is_completely_different() {
     let word = "BANANA";
     let inputs = &["banana"];
@@ -156,9 +127,7 @@ fn words_are_not_anagrams_of_themselves_even_if_letter_case_is_completely_differ
     let expected = HashSet::from_iter([]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn words_other_than_themselves_can_be_anagrams() {
     let word = "LISTEN";
     let inputs = &["LISTEN", "Silent"];
@@ -166,9 +135,7 @@ fn words_other_than_themselves_can_be_anagrams() {
     let expected = HashSet::from_iter(["Silent"]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn handles_case_of_greek_letters() {
     let word = "ΑΒΓ";
     let inputs = &["ΒΓΑ", "ΒΓΔ", "γβα", "αβγ"];
@@ -176,9 +143,7 @@ fn handles_case_of_greek_letters() {
     let expected = HashSet::from_iter(["ΒΓΑ", "γβα"]);
     assert_eq!(output, expected);
 }
-
 #[test]
-
 fn different_characters_may_have_the_same_bytes() {
     let word = "a⬂";
     let inputs = &["€a"];

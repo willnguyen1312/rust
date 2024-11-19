@@ -1,18 +1,15 @@
 pub struct Duration(f64);
-
 impl From<u64> for Duration {
     fn from(s: u64) -> Self {
         Duration((s as f64) / 31557600_f64)
     }
 }
-
 pub trait Planet {
     fn period() -> f64;
     fn years_during(d: &Duration) -> f64 {
         d.0 / Self::period()
     }
 }
-
 macro_rules! planet {
     ($n:ident, $p:expr) => {
         pub struct $n;
@@ -23,7 +20,6 @@ macro_rules! planet {
         }
     };
 }
-
 planet!(Earth, 1.0);
 planet!(Mercury, 0.2408467);
 planet!(Venus, 0.61519726);

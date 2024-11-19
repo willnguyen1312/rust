@@ -8,7 +8,6 @@ static NEIGBOURHOOD_OFFSETS: &'static [(i32, i32)] = &[
     (0, 1),
     (1, 1),
 ];
-
 pub fn annotate(field: &[&str]) -> Vec<String> {
     let height = field.len() as i32;
     (0..height)

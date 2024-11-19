@@ -5,7 +5,6 @@ pub enum Comparison {
     Superlist,
     Unequal,
 }
-
 pub fn sublist<T: PartialEq>(first_list: &[T], second_list: &[T]) -> Comparison {
     let superlist = second_list.is_empty()
         || first_list

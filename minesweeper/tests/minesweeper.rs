@@ -1,5 +1,4 @@
 use minesweeper::*;
-
 #[test]
 fn no_rows() {
     let input = &[];
@@ -7,7 +6,6 @@ fn no_rows() {
     let actual = annotate(input);
     assert_eq!(actual, expected);
 }
-
 #[test]
 fn no_columns() {
     let input = &[""];
@@ -15,71 +13,30 @@ fn no_columns() {
     let actual = annotate(input);
     assert_eq!(actual, expected);
 }
-
 #[test]
 fn no_mines() {
-    #[rustfmt::skip]
-    let (input, expected) = (&[
-        "   ",
-        "   ",
-        "   ",
-    ], &[
-        "   ",
-        "   ",
-        "   ",
-    ]);
+    #[rustfmt::skip]    let (input, expected) = (&[        "   ",        "   ",        "   ",    ], &[        "   ",        "   ",        "   ",    ]);
     let actual = annotate(input);
     assert_eq!(actual, expected);
 }
-
 #[test]
 fn minefield_with_only_mines() {
-    #[rustfmt::skip]
-    let (input, expected) = (&[
-        "***",
-        "***",
-        "***",
-    ], &[
-        "***",
-        "***",
-        "***",
-    ]);
+    #[rustfmt::skip]    let (input, expected) = (&[        "***",        "***",        "***",    ], &[        "***",        "***",        "***",    ]);
     let actual = annotate(input);
     assert_eq!(actual, expected);
 }
-
 #[test]
 fn mine_surrounded_by_spaces() {
-    #[rustfmt::skip]
-    let (input, expected) = (&[
-        "   ",
-        " * ",
-        "   ",
-    ], &[
-        "111",
-        "1*1",
-        "111",
-    ]);
+    #[rustfmt::skip]    let (input, expected) = (&[        "   ",        " * ",        "   ",    ], &[        "111",        "1*1",        "111",    ]);
     let actual = annotate(input);
     assert_eq!(actual, expected);
 }
-
 #[test]
 fn space_surrounded_by_mines() {
-    #[rustfmt::skip]
-    let (input, expected) = (&[
-        "***",
-        "* *",
-        "***",
-    ], &[
-        "***",
-        "*8*",
-        "***",
-    ]);
+    #[rustfmt::skip]    let (input, expected) = (&[        "***",        "* *",        "***",    ], &[        "***",        "*8*",        "***",    ]);
     let actual = annotate(input);
     assert_eq!(actual, expected);
 }
-
 #[test]
 fn horizontal_line() {
     let input = &[" * * "];
@@ -87,7 +44,6 @@ fn horizontal_line() {
     let actual = annotate(input);
     assert_eq!(actual, expected);
 }
-
 #[test]
 fn horizontal_line_mines_at_edges() {
     let input = &["*   *"];
@@ -95,85 +51,27 @@ fn horizontal_line_mines_at_edges() {
     let actual = annotate(input);
     assert_eq!(actual, expected);
 }
-
 #[test]
 fn vertical_line() {
-    #[rustfmt::skip]
-    let (input, expected) = (&[
-        " ",
-        "*",
-        " ",
-        "*",
-        " ",
-    ], &[
-        "1",
-        "*",
-        "2",
-        "*",
-        "1",
-    ]);
+    #[rustfmt::skip]    let (input, expected) = (&[        " ",        "*",        " ",        "*",        " ",    ], &[        "1",        "*",        "2",        "*",        "1",    ]);
     let actual = annotate(input);
     assert_eq!(actual, expected);
 }
-
 #[test]
 fn vertical_line_mines_at_edges() {
-    #[rustfmt::skip]
-    let (input, expected) = (&[
-        "*",
-        " ",
-        " ",
-        " ",
-        "*",
-    ], &[
-        "*",
-        "1",
-        " ",
-        "1",
-        "*",
-    ]);
+    #[rustfmt::skip]    let (input, expected) = (&[        "*",        " ",        " ",        " ",        "*",    ], &[        "*",        "1",        " ",        "1",        "*",    ]);
     let actual = annotate(input);
     assert_eq!(actual, expected);
 }
-
 #[test]
 fn cross() {
-    #[rustfmt::skip]
-    let (input, expected) = (&[
-        "  *  ",
-        "  *  ",
-        "*****",
-        "  *  ",
-        "  *  ",
-    ], &[
-        " 2*2 ",
-        "25*52",
-        "*****",
-        "25*52",
-        " 2*2 ",
-    ]);
+    #[rustfmt::skip]    let (input, expected) = (&[        "  *  ",        "  *  ",        "*****",        "  *  ",        "  *  ",    ], &[        " 2*2 ",        "25*52",        "*****",        "25*52",        " 2*2 ",    ]);
     let actual = annotate(input);
     assert_eq!(actual, expected);
 }
-
 #[test]
 fn large_minefield() {
-    #[rustfmt::skip]
-    let (input, expected) = (&[
-        " *  * ",
-        "  *   ",
-        "    * ",
-        "   * *",
-        " *  * ",
-        "      ",
-    ], &[
-        "1*22*1",
-        "12*322",
-        " 123*2",
-        "112*4*",
-        "1*22*2",
-        "111111",
-    ]);
+    #[rustfmt::skip]    let (input, expected) = (&[        " *  * ",        "  *   ",        "    * ",        "   * *",        " *  * ",        "      ",    ], &[        "1*22*1",        "12*322",        " 123*2",        "112*4*",        "1*22*2",        "111111",    ]);
     let actual = annotate(input);
     assert_eq!(actual, expected);
 }
