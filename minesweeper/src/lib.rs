@@ -1,4 +1,4 @@
-static NEIGBOURHOOD_OFFSETS: &'static [(i32, i32)] = &[
+static NEIGBOURHOOD_OFFSETS: &[(i32, i32)] = &[
     (-1, -1),
     (0, -1),
     (1, -1),
@@ -26,7 +26,7 @@ pub fn annotate(field: &[&str]) -> Vec<String> {
                             .count()
                         {
                             0 => ' ',
-                            n => (n as u8 + '0' as u8) as char,
+                            n => (n as u8 + b'0') as char,
                         }
                     }
                 })
