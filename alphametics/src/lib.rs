@@ -5,7 +5,7 @@ pub fn solve(input: &str) -> Option<HashMap<char, u8>> {
     let mut values = parse(input);
     values.sort();
     let mut ans = vec![0; values.len()];
-    return find(0, &mut ans, &(0..10).collect(), &values);
+    find(0, &mut ans, &(0..10).collect(), &values)
 }
 
 fn parse(input: &str) -> Vec<(char, i64, bool)> {
@@ -16,7 +16,7 @@ fn parse(input: &str) -> Vec<(char, i64, bool)> {
     for ch in input.chars().rev() {
         match ch {
             'A'..='Z' => {
-                *ans.entry(ch).or_insert(0) += value;
+                &ans.entry(ch).or_insert(0) += value;
                 value *= 10;
                 prev = ch;
             }
@@ -54,7 +54,7 @@ fn find(
         if digit == 0 && values[count].2 {
             continue;
         }
-        ans[count] = digit as u8;
+        ans[count] = digit;
         let mut digits2 = digits.clone();
         digits2.remove(i);
         if let Some(solution) = find(count + 1, ans, &digits2, values) {
@@ -64,7 +64,7 @@ fn find(
     None
 }
 
-fn cal(ans: &Vec<u8>, values: &Vec<(char, i64, bool)>) -> bool {
+fn cal(ans: &[u8], values: &[(char, i64, bool)]) -> bool {
     let mut total = 0;
     for (i, &digit) in ans.iter().enumerate() {
         total += digit as i64 * values[i].1;
