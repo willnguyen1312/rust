@@ -1,85 +1,49 @@
 use std::iter::FromIterator;
 
-pub struct SimpleLinkedList<T> {
-    head: Option<Box<Node<T>>>,
-}
-
-struct Node<T> {
-    data: T,
-    next: Option<Box<Node<T>>>,
-}
-
-impl<T> Node<T> {
-    fn new(data: T, next: Option<Box<Node<T>>>) -> Self {
-        Self { data, next }
-    }
-}
+pub struct SimpleLinkedList<T>(Vec<T>);
 
 impl<T> SimpleLinkedList<T> {
     pub fn new() -> Self {
-        Self {
-            head: None
-        }
+        SimpleLinkedList(Vec::new())
     }
 
     pub fn is_empty(&self) -> bool {
-        self.head.is_none()
+        self.0.is_empty()
     }
 
     pub fn len(&self) -> usize {
-        let mut current_node = &self.head;
-        let mut size = 0;
-        while let Some(x) = current_node {
-            size += 1;
-            current_node = &x.next;
-        }
-        size
+        self.0.len()
     }
 
-    pub fn push(&mut self, element: T) {
-        let node = Box::new(Node::new(element, self.head.take()));
-        self.head = Some(node);
+    pub fn push(&mut self, _element: T) {
+        self.0.push(_element)
     }
 
     pub fn pop(&mut self) -> Option<T> {
-        if self.head.is_some() {
-            let head_node = self.head.take().unwrap();
-            self.head = head_node.next;
-            Some(head_node.data)
-        } else {
-            None
-        }
+        self.0.pop()
     }
 
     pub fn peek(&self) -> Option<&T> {
-        self.head.as_ref().map(|head| &(head.data))
+        self.0.last()
     }
 
-    pub fn rev(mut self) -> SimpleLinkedList<T> {
-        let mut ret = SimpleLinkedList::new();
-        while let Some(x) = self.pop() {
-            ret.push(x);
-        }
-        ret
+    #[must_use]
+    pub fn rev(self) -> SimpleLinkedList<T> {
+        let mut v = self.0;
+        v.reverse();
+        SimpleLinkedList(v)
     }
 }
 
 impl<T> FromIterator<T> for SimpleLinkedList<T> {
-    fn from_iter<I: IntoIterator<Item=T>>(iter: I) -> Self {
-        let mut list = SimpleLinkedList::new();
-        for item in iter {
-            list.push(item);
-        }
-        list
+    fn from_iter<I: IntoIterator<Item = T>>(_iter: I) -> Self {
+        let v = Vec::from_iter(_iter);
+        SimpleLinkedList(v)
     }
 }
 
-impl<T> Into<Vec<T>> for SimpleLinkedList<T> {
-    fn into(mut self) -> Vec<T> {
-        let mut ret = Vec::new();
-        while let Some(x) = self.pop() {
-            ret.insert(0, x);
-        }
-        ret
+impl<T> From<SimpleLinkedList<T>> for Vec<T> {
+    fn from(mut _linked_list: SimpleLinkedList<T>) -> Vec<T> {
+        _linked_list.0
     }
 }
