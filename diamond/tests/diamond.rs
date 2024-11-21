@@ -6,7 +6,6 @@ fn a() {
 }
 
 #[test]
-#[ignore]
 fn b() {
     #[rustfmt::skip]
     assert_eq!(
@@ -20,7 +19,6 @@ fn b() {
 }
 
 #[test]
-#[ignore]
 fn c() {
     #[rustfmt::skip]
     assert_eq!(
@@ -36,7 +34,6 @@ fn c() {
 }
 
 #[test]
-#[ignore]
 fn d() {
     #[rustfmt::skip]
     assert_eq!(
@@ -54,7 +51,6 @@ fn d() {
 }
 
 #[test]
-#[ignore]
 fn e() {
     assert_eq!(
         get_diamond('Z'),

@@ -358,7 +358,6 @@ mod read_file {
 }
 
 #[test]
-#[ignore]
 fn read_stats_by_ref_returns_wrapped_reader() {
     use paasio::ReadStats;
 
@@ -399,7 +398,6 @@ impl Write for WriteFails {
 }
 
 #[test]
-#[ignore]
 fn read_propagates_errors() {
     use paasio::ReadStats;
 
@@ -416,7 +414,6 @@ fn read_propagates_errors() {
 }
 
 #[test]
-#[ignore]
 fn write_propagates_errors() {
     use paasio::WriteStats;
 

@@ -13,7 +13,6 @@ fn munge_in_place_identity() {
 }
 
 #[test]
-#[ignore]
 fn munge_in_place_roundtrip() {
     let mut xs1 = Xorcism::new(&[1, 2, 3, 4, 5]);
     let mut xs2 = Xorcism::new(&[1, 2, 3, 4, 5]);
@@ -27,7 +26,6 @@ fn munge_in_place_roundtrip() {
 }
 
 #[test]
-#[ignore]
 fn munge_in_place_stateful() {
     let mut xs = Xorcism::new(&[1, 2, 3, 4, 5]);
     let input = "This is super-secret, cutting edge encryption, folks.".as_bytes();
@@ -43,7 +41,6 @@ fn munge_in_place_stateful() {
 }
 
 #[test]
-#[ignore]
 fn munge_identity() {
     let mut xs = Xorcism::new(&[0]);
     let data = "This is super-secret, cutting edge encryption, folks.";
@@ -55,7 +52,6 @@ fn munge_identity() {
 }
 
 #[test]
-#[ignore]
 fn statefulness() {
     // we expect Xorcism to be stateful: at the end of a munging run, the key has rotated.
     // this means that until the key has completely rotated around, equal inputs will produce
