@@ -1,49 +1,50 @@
-use rand::{thread_rng, Rng};
+fn check_lower_case_letters(s: &str) -> bool {
+    for c in s.chars() {
+        if c.is_uppercase() || c.is_numeric() || c.is_uppercase() {
+            return false;
+        }
+    }
+    true
+}
 
 pub fn encode(key: &str, s: &str) -> Option<String> {
-    match invalid(key) {
-        true => None,
-        false => Some(
-            s.chars()
-                .zip(key.chars().cycle())
-                .map(|(s, k)| shift(s, k as i8 - 97))
-                .collect::<String>(),
-        ),
+    if key.is_empty() || !check_lower_case_letters(key) || !check_lower_case_letters(s) {
+        return None;
     }
+
+    let mut res = String::new();
+    let mut iter_key = key.chars().cycle();
+
+    for s_char in s.chars() {
+        let key_char = iter_key.next().unwrap();
+        res.push((((s_char as u8 - 97) + (key_char as u8 - 97) + 26) % 26 + 97) as char);
+    }
+
+    Some(res)
 }
 
 pub fn decode(key: &str, s: &str) -> Option<String> {
-    match invalid(key) {
-        true => None,
-        false => Some(
-            s.chars()
-                .zip(key.chars().cycle())
-                .map(|(s, k)| shift(s, -(k as i8 - 97)))
-                .collect::<String>(),
-        ),
+    if key.is_empty() || !check_lower_case_letters(key) || !check_lower_case_letters(s) {
+        return None;
     }
+
+    let mut res = String::new();
+    let mut iter_key = key.chars().cycle();
+
+    for s_char in s.chars() {
+        let key_char = iter_key.next().unwrap();
+        res.push(((((s_char as i8 - 97) - (key_char as i8 - 97) + 26) as u8) % 26 + 97) as char);
+    }
+
+    Some(res)
 }
 
 pub fn encode_random(s: &str) -> (String, String) {
-    let mut key = String::new();
-    let mut rng = thread_rng();
-    for _ in 0..100 {
-        key.push(rng.gen_range::<u8>(97, 122) as char)
-    }
-    (key.clone(), encode(&key, s).unwrap())
-}
+    let key = (0..200)
+        .map(|_| (rand::random::<u8>() % 26 + 97) as char)
+        .collect::<String>();
 
-fn invalid(key: &str) -> bool {
-    key.chars()
-        .filter(|c| c.is_uppercase() || c.is_numeric())
-        .count()
-        > 0
-        || key.is_empty()
-}
+    let encrypted = encode(&key[..], s).unwrap();
 
-fn shift(c: char, key: i8) -> char {
-    match c.is_uppercase() {
-        true => (((c as i8 - 65 + key + 26) % 26) + 65) as u8 as char,
-        false => (((c as i8 - 97 + key + 26) % 26) + 97) as u8 as char,
-    }
+    (key.to_string(), encrypted)
 }
